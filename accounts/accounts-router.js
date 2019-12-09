@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
   AccountsDb('accounts')
     .select('*')
     .where('id', '=', req.params.id)
-    // .first()
+    .first()
     .then(account => {
       res.status(200).json(account);
     })
@@ -48,6 +48,20 @@ router.post('/', (req, res) => {
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: 'Error while adding new account.' });
+    });
+});
+
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  AccountsDb('accounts')
+    .where({ id })
+    .first()
+    .then(count => {
+      res.status(200).json(count);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: 'Error while updating account.' });
     });
 });
 
