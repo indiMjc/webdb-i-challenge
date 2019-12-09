@@ -17,6 +17,20 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+  AccountsDb('accounts')
+    .select('*')
+    .where('id', '=', req.params.id)
+    // .first()
+    .then(account => {
+      res.status(200).json(account);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: 'Error getting account.' });
+    });
+});
+
 router.post('/', (req, res) => {
   console.log(req.body);
   AccountsDb.insert(req.body, 'id')
