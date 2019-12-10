@@ -36,8 +36,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// router.get();
-
 router.post('/', (req, res) => {
   console.log(req.body);
   AccountsDb.insert(req.body, 'id')

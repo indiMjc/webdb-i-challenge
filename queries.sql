@@ -26,7 +26,7 @@ INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Cou
 VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth')
 
 -- Update Bilbo Baggins record so that the postal code changes to "11122"
-UPDATE Customers
+UPDATE Customers 
 SET PostalCode = '111222'
 WHERE CustomerID = 92
 
