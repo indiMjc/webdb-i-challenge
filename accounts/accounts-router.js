@@ -7,7 +7,12 @@ const AccountsDb = require('../data/dbConfig');
 router.use(express.json());
 
 router.get('/', (req, res) => {
+  const pageLimit = req.query.limit;
+  const sortDir = req.query.sortdir;
+
   AccountsDb('accounts')
+    .limit(pageLimit)
+    .orderBy('name', sortDir)
     .then(accounts => {
       res.status(200).json(accounts);
     })
@@ -30,6 +35,8 @@ router.get('/:id', (req, res) => {
       res.status(500).json({ error: 'Error getting account.' });
     });
 });
+
+// router.get();
 
 router.post('/', (req, res) => {
   console.log(req.body);
